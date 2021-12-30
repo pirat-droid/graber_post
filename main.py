@@ -10,12 +10,16 @@ import connect_db
 def main():
     cnh_db = connect_db.DbCNH()
     req = requests.get('https://blockchain.news/news/bakkt-president-adam-white-said-he-will-depart-from-bakkt-next-week')
+    # добавить аккаунты
+    # выбрать рандомный аккаунт
     soup = BeautifulSoup(req.text, 'html.parser')
     element = soup.find('div', 'main col-sm-12')
     title = translate(element.find('h1', 'title21').text, 'ru')
     print(title)
     slug_t = transliterate.translit(title, reversed=True).replace(' ', '-')
     print(slug_t)
+    # скачать картинку
+    # сохранить картинку в базу
     time.sleep(5000)
     author = element.find("span", {"id": "author"})
     time_read = element.find('span', 'textdesc')
